@@ -1,0 +1,1 @@
+print("Staj Görev Takip Uygulaması")
