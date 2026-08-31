@@ -1,3 +1,5 @@
+gorevler = []
+
 print("================================")
 print("       STAJ GÖREV TAKİP")
 print("================================")
@@ -12,4 +14,5 @@ secim = input("Seçiminiz: ")
 
 if secim == "2":
     gorev = input("Yeni görevi girin: ")
+    gorevler.append(gorev)
     print("Görev eklendi:", gorev)
