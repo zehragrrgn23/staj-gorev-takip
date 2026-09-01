@@ -1,3 +1,10 @@
+imimport json
+
+try:
+    with open("gorevler.json", "r", encoding="utf-8") as dosya:
+        gorevler = json.load(dosya)
+except FileNotFoundError:
+    gorevler = []port json
 gorevler = []
 
 while True:
