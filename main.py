@@ -61,6 +61,29 @@ while True:
             else:
                 print("Geçersiz görev numarası.")
 
+    elif secim == "4":
+        if len(gorevler) == 0:
+            print("Henüz görev yok.")
+        else:
+            print("\n===== GÖREVLER =====")
+
+            for i, gorev in enumerate(gorevler, start=1):
+                if gorev["tamamlandi"]:
+                    durum = "✓"
+                else:
+                    durum = " "
+
+                print(f"{i}. [{durum}] {gorev['ad']}")
+
+            secim_gorev = int(input("Silmek istediğiniz görev numarası: "))
+
+            if 1 <= secim_gorev <= len(gorevler):
+                silinen_gorev = gorevler.pop(secim_gorev - 1)
+                print("Görev silindi:", silinen_gorev["ad"])
+            else:
+                print("Geçersiz görev numarası.")
+
+
     elif secim == "5":
         print("Program kapatılıyor...")
         break
