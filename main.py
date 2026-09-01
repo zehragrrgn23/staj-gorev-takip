@@ -16,7 +16,13 @@ while True:
 
     if secim == "2":
         gorev = input("Yeni görevi girin: ")
-        gorevler.append(gorev)
+
+        yeni_gorev = {
+            "ad": gorev,
+            "tamamlandi": False
+        }
+
+        gorevler.append(yeni_gorev)
         print("Görev eklendi:", gorev)
 
     elif secim == "1":
@@ -26,7 +32,12 @@ while True:
             print("Henüz görev yok.")
         else:
             for i, gorev in enumerate(gorevler, start=1):
-                print(f"{i}. {gorev}")
+                if gorev["tamamlandi"]:
+                    durum = "✓"
+                else:
+                    durum = " "
+
+                print(f"{i}. [{durum}] {gorev['ad']}")
 
     elif secim == "5":
         print("Program kapatılıyor...")
