@@ -3,7 +3,7 @@ gorevler = []
 while True:
     print()
     print("================================")
-    print("       STAJ GÖREV UYGULAMASI")
+    print("       STAJ GÖREV TAKİP SİSTEMİ")
     print("================================")
 
     print("1 - Görevleri göster")
