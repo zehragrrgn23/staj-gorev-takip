@@ -11,6 +11,7 @@ while True:
     print("3 - Görevi tamamla")
     print("4 - Görev sil")
     print("5 - Çıkış")
+    print("6 - Görev ara")
 
     secim = input("Seçiminiz: ")
 
@@ -83,10 +84,21 @@ while True:
             else:
                 print("Geçersiz görev numarası.")
 
-
     elif secim == "5":
         print("Program kapatılıyor...")
         break
+
+    elif secim == "6":
+        aranan = input("Aramak istediğiniz görev: ")
+        bulundu = False
+
+        for gorev in gorevler:
+            if aranan.lower() in gorev["ad"].lower():
+                print(gorev["ad"])
+                bulundu = True
+
+        if not bulundu:
+            print("Arama sonucu bulunamadı.")
 
     else:
         print("Geçersiz seçim.")
