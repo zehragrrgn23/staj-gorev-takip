@@ -1,11 +1,21 @@
-imimport json
+import json
 
-try:
-    with open("gorevler.json", "r", encoding="utf-8") as dosya:
-        gorevler = json.load(dosya)
-except FileNotFoundError:
-    gorevler = []port json
-gorevler = []
+
+def gorevleri_yukle():
+    try:
+        with open("gorevler.json", "r", encoding="utf-8") as dosya:
+            return json.load(dosya)
+    except FileNotFoundError:
+        return []
+
+
+def gorevleri_kaydet(gorevler):
+    with open("gorevler.json", "w", encoding="utf-8") as dosya:
+        json.dump(gorevler, dosya, ensure_ascii=False, indent=4)
+
+
+gorevler = gorevleri_yukle()
+
 
 while True:
     print()
@@ -22,18 +32,7 @@ while True:
 
     secim = input("Seçiminiz: ")
 
-    if secim == "2":
-        gorev = input("Yeni görevi girin: ")
-
-        yeni_gorev = {
-            "ad": gorev,
-            "tamamlandi": False
-        }
-
-        gorevler.append(yeni_gorev)
-        print("Görev eklendi:", gorev)
-
-    elif secim == "1":
+    if secim == "1":
         print("\n===== GÖREVLER =====")
 
         if len(gorevler) == 0:
@@ -46,6 +45,19 @@ while True:
                     durum = " "
 
                 print(f"{i}. [{durum}] {gorev['ad']}")
+
+    elif secim == "2":
+        gorev = input("Yeni görevi girin: ")
+
+        yeni_gorev = {
+            "ad": gorev,
+            "tamamlandi": False
+        }
+
+        gorevler.append(yeni_gorev)
+        gorevleri_kaydet(gorevler)
+
+        print("Görev eklendi:", gorev)
 
     elif secim == "3":
         if len(gorevler) == 0:
@@ -61,10 +73,14 @@ while True:
 
                 print(f"{i}. [{durum}] {gorev['ad']}")
 
-            secim_gorev = int(input("Tamamlamak istediğiniz görev numarası: "))
+            secim_gorev = int(
+                input("Tamamlamak istediğiniz görev numarası: ")
+            )
 
             if 1 <= secim_gorev <= len(gorevler):
                 gorevler[secim_gorev - 1]["tamamlandi"] = True
+                gorevleri_kaydet(gorevler)
+
                 print("Görev tamamlandı!")
             else:
                 print("Geçersiz görev numarası.")
@@ -83,10 +99,14 @@ while True:
 
                 print(f"{i}. [{durum}] {gorev['ad']}")
 
-            secim_gorev = int(input("Silmek istediğiniz görev numarası: "))
+            secim_gorev = int(
+                input("Silmek istediğiniz görev numarası: ")
+            )
 
             if 1 <= secim_gorev <= len(gorevler):
                 silinen_gorev = gorevler.pop(secim_gorev - 1)
+                gorevleri_kaydet(gorevler)
+
                 print("Görev silindi:", silinen_gorev["ad"])
             else:
                 print("Geçersiz görev numarası.")
