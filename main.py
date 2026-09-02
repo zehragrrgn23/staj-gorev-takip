@@ -29,6 +29,7 @@ while True:
     print("4 - Görev sil")
     print("5 - Çıkış")
     print("6 - Görev ara")
+    print("7 - Görev adını değiştir")
 
     secim = input("Seçiminiz: ")
 
@@ -126,6 +127,19 @@ while True:
 
         if not bulundu:
             print("Arama sonucu bulunamadı.")
+    elif secim == "7":
+        if len(gorevler) == 0:
+            print("Henüz görev yok.")
+        else: 
+            for i , gorev in enumerate (gorevler , start=1):
+                print(f"{i}. {gorev['ad']}")
+
+            secim_gorev = int(input("Değiştirmek istediğiniz görev numarası:  "))   
+            if 1 <= secim_gorev <= len(gorevler):       
+                yeni_ad = input ("Yeni görev adını girin:  ")
+                gorevler[secim_gorev-1]["ad"] = yeni_ad
+                gorevleri_kaydet(gorevler) 
+                print("Görev adı başarıyla değiştirildi!")
 
     else:
         print("Geçersiz seçim.")
